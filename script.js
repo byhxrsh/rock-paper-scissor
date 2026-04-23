@@ -33,55 +33,62 @@ function getUserInput() {
 let humanScore = 0;
 let computerScore = 0;
 
-// function with logic of first round
-function playRound(humanChoice, computerChoice) {
-  const normalizedHumanChoice = humanChoice.toLowerCase(); // normalizes uppercase/mixed input to lowercase 
-
-  if (normalizedHumanChoice === computerChoice) {
-    console.log(`Draw! let's play again.`);
-  } else if (normalizedHumanChoice === `rock` && computerChoice === `scissor`) {
-    ++humanScore;
-    console.log(`you won! rock beats scissor. you won ${humanScore}/5 rounds.`);
-  } else if (normalizedHumanChoice === `rock` && computerChoice === `paper`) {
-    ++computerScore;
-    console.log(`you lose! paper beats rock. you won ${humanScore}/5 rounds.`);
-  } else if (normalizedHumanChoice === `paper` && computerChoice === `rock`) {
-    ++humanScore;
-    console.log(`you won! paper beats rock. you won ${humanScore}/5 rounds.`);
-  } else if (normalizedHumanChoice === `paper` && computerChoice === `scissor`) {
-    ++computerScore;
-    console.log(`you lose! scissor beats paper. you won ${humanScore}/5 rounds.`);
-  } else if (normalizedHumanChoice === `scissor` && computerChoice === `rock`) {
-    ++computerScore
-    console.log(`you lose! rock beats scissor. you won ${humanScore}/5 rounds.`);
-  } else {
-    ++humanScore
-    console.log(`you won! scissor beats paper. you won ${humanScore}/5 rounds.`)
-  }
-
-}
 
 const humanSelection = getUserInput();
 const computerSelection = getComputerChoice();
 
-// playRound(humanSelection, computerSelection);
+const humanSelection2 = getUserInput();
+const computerSelection2 = getComputerChoice();
 
-function playFiveRounds() {
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection, computerSelection);
-}
+const humanSelection3 = getUserInput();
+const computerSelection3 = getComputerChoice();
 
-const startRounds = playFiveRounds();
+const humanSelection4 = getUserInput();
+const computerSelection4 = getComputerChoice();
 
-function playGame(rounds) {
+const humanSelection5 = getUserInput();
+const computerSelection5 = getComputerChoice();
+
+function playGame() {
+  
+  // function with logic of first round
+  function playRound(humanChoice, computerChoice) {
+    const normalizedHumanChoice = humanChoice.toLowerCase(); // normalizes uppercase/mixed input to lowercase 
+  
+    if (normalizedHumanChoice === computerChoice) {
+      console.log(`Draw! let's play again.`);
+    } else if (normalizedHumanChoice === `rock` && computerChoice === `scissor`) {
+      ++humanScore;
+      console.log(`you won! rock beats scissor. you won ${humanScore}/5 rounds.`);
+    } else if (normalizedHumanChoice === `rock` && computerChoice === `paper`) {
+      ++computerScore;
+      console.log(`you lose! paper beats rock. you won ${humanScore}/5 rounds.`);
+    } else if (normalizedHumanChoice === `paper` && computerChoice === `rock`) {
+      ++humanScore;
+      console.log(`you won! paper beats rock. you won ${humanScore}/5 rounds.`);
+    } else if (normalizedHumanChoice === `paper` && computerChoice === `scissor`) {
+      ++computerScore;
+      console.log(`you lose! scissor beats paper. you won ${humanScore}/5 rounds.`);
+    } else if (normalizedHumanChoice === `scissor` && computerChoice === `rock`) {
+      ++computerScore
+      console.log(`you lose! rock beats scissor. you won ${humanScore}/5 rounds.`);
+    } else {
+      ++humanScore
+      console.log(`you won! scissor beats paper. you won ${humanScore}/5 rounds.`)
+    }
+  }
+
+  playRound(humanSelection, computerSelection);
+  playRound(humanSelection2, computerSelection2);
+  playRound(humanSelection3, computerSelection3);
+  playRound(humanSelection4, computerSelection4);
+  playRound(humanSelection5, computerSelection5);
+  
   if (humanScore > computerScore) {
-    console.log(`yup! FINAL SCORE ~ you won ${humanScore} rounds out of 5 rounds.`)
+    console.log(`yup! FINAL SCORE ~ you won ${humanScore} out of 5 rounds.`)
   } else {
-    console.log(`better luck next time, FINAL SCORE ~ you won ${humanScore} rounds out of 5 rounds.`)
+    console.log(`better luck next time, FINAL SCORE ~ you won ${humanScore}/5 rounds.`)
   }
 }
 
-function playGame(startRounds)
+playGame();
