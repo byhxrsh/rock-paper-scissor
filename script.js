@@ -13,7 +13,7 @@
 //   ~ if random string is `scissor` and user's choice is `paper` return `you loose! try again?`   
 
 // create a function that will randomly return any of the three string values- `rock`, `paper`, or `scissor`.
-function getComputerChoice() {
+let getComputerChoice = function() {
   if (Math.random() < 0.32) {
     return `paper`
   } else if (Math.random() > 0.32 && Math.random() < 0.64) {
@@ -21,40 +21,25 @@ function getComputerChoice() {
   } else {
     return `scissor`
   }
-}
+};
 
 // create a function to get the user's input/choice. 
-function getUserInput() {
+let getUserInput = function() {
   let userChoice = prompt(`what's your choice?`, ``)
   return userChoice
-}
+};
 
 // initialize two variables for the purpose of keeping track of players score
 let humanScore = 0;
 let computerScore = 0;
 
 
-const humanSelection = getUserInput();
-const computerSelection = getComputerChoice();
-
-const humanSelection2 = getUserInput();
-const computerSelection2 = getComputerChoice();
-
-const humanSelection3 = getUserInput();
-const computerSelection3 = getComputerChoice();
-
-const humanSelection4 = getUserInput();
-const computerSelection4 = getComputerChoice();
-
-const humanSelection5 = getUserInput();
-const computerSelection5 = getComputerChoice();
-
 function playGame() {
   
   // function with logic of first round
   function playRound(humanChoice, computerChoice) {
     const normalizedHumanChoice = humanChoice.toLowerCase(); // normalizes uppercase/mixed input to lowercase 
-  
+    
     if (normalizedHumanChoice === computerChoice) {
       console.log(`Draw! let's play again.`);
     } else if (normalizedHumanChoice === `rock` && computerChoice === `scissor`) {
@@ -78,11 +63,11 @@ function playGame() {
     }
   }
 
-  playRound(humanSelection, computerSelection);
-  playRound(humanSelection2, computerSelection2);
-  playRound(humanSelection3, computerSelection3);
-  playRound(humanSelection4, computerSelection4);
-  playRound(humanSelection5, computerSelection5);
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
   
   if (humanScore > computerScore) {
     console.log(`yup! FINAL SCORE ~ you won ${humanScore} out of 5 rounds.`)
