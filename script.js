@@ -13,9 +13,11 @@
 //   ~ if random string is `scissor` and user's choice is `paper` return `you loose! try again?`   
 
 let getComputerChoice = function() {
-  if (Math.random() < 1/3) {
+  let randomInt = Math.floor(Math.random() * 3);
+
+  if (randomInt === 0) {
     return `paper`
-  } else if (Math.random() > 0.32 && Math.random() < 0.64) {
+  } else if (randomInt === 1) {
     return `rock`
   } else {
     return `scissor`
@@ -23,7 +25,7 @@ let getComputerChoice = function() {
 };
 
 let getUserInput = function() {
-  let userChoice = prompt(`what's your choice?`, ``)
+  let userChoice = prompt(`what's your choice?`, ``);
   return userChoice
 };
 
@@ -33,41 +35,42 @@ let computerScore = 0;
 
 function playGame() {
   function playRound(humanChoice, computerChoice) {
-    const normalizedHumanChoice = humanChoice().toLowerCase();
+    const normalizedHumanChoice = humanChoice.toLowerCase();
+    const varComputerChoice = computerChoice;
     
-    if (normalizedHumanChoice === computerChoice()) {
+    if (normalizedHumanChoice === varComputerChoice) {
       console.log(`Draw! let's play again.`);
-    } else if (normalizedHumanChoice === `rock` && computerChoice() === `scissor`) {
+    } else if (normalizedHumanChoice === `rock` && varComputerChoice === `scissor`) {
       ++humanScore;
       console.log(`you won! rock beats scissor. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `rock` && computerChoice() === `paper`) {
+    } else if (normalizedHumanChoice === `rock` && varComputerChoice === `paper`) {
       ++computerScore;
       console.log(`you lose! paper beats rock. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `paper` && computerChoice() === `rock`) {
+    } else if (normalizedHumanChoice === `paper` && varComputerChoice === `rock`) {
       ++humanScore;
       console.log(`you won! paper beats rock. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `paper` && computerChoice() === `scissor`) {
+    } else if (normalizedHumanChoice === `paper` && varComputerChoice === `scissor`) {
       ++computerScore;
       console.log(`you lose! scissor beats paper. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `scissor` && computerChoice() === `rock`) {
-      ++computerScore
+    } else if (normalizedHumanChoice === `scissor` && varComputerChoice === `rock`) {
+      ++computerScore;
       console.log(`you lose! rock beats scissor. you won ${humanScore}/5 rounds.`);
     } else {
-      ++humanScore
-      console.log(`you won! scissor beats paper. you won ${humanScore}/5 rounds.`)
+      ++humanScore;
+      console.log(`you won! scissor beats paper. you won ${humanScore}/5 rounds.`);
     }
   }
 
-  playRound(getUserInput, getComputerChoice);
-  playRound(getUserInput, getComputerChoice);
-  playRound(getUserInput, getComputerChoice);
-  playRound(getUserInput, getComputerChoice);
-  playRound(getUserInput, getComputerChoice);
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
+  playRound(getUserInput(), getComputerChoice());
   
   if (humanScore > computerScore) {
-    console.log(`yup! FINAL SCORE ~ you won ${humanScore} out of 5 rounds.`)
+    console.log(`yup! FINAL SCORE ~ you won ${humanScore} out of 5 rounds.`);
   } else {
-    console.log(`better luck next time, FINAL SCORE ~ you won ${humanScore}/5 rounds.`)
+    console.log(`better luck next time, FINAL SCORE ~ you won ${humanScore}/5 rounds.`);
   }
 }
 
