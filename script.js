@@ -1,17 +1,3 @@
-// ask user for the input/choice. 
-// check if the choice is valid. input must be from these three strings `rock`, `paper`, or `scissor`
-// if input is other than these three stings return `invalid choice`-- for now we are skipping this and assuming user will select from only valid choices
-// a function that randomly returns strings- `rock`, `paper`, or `scissor`
-// keep track of players score.
-// now compare random strings to user's choice-
-//   ~ if both random string and user's choice are same then return `Match draw`
-//   ~ if random string is `rock` and user's choice is `paper` return `you loose! try again?`
-//   ~ if random string is `paper` and user's choice is `rock` return `woo-hoo, you won!`
-//   ~ if random string is `rock` and user's choice is `scissor` return `you loose! try again?`   
-//   ~ if random string is `scissor` and user's choice is `rock` return `woo-hoo, you won!`   
-//   ~ if random string is `paper` and user's choice is `scissor` return `woo-hoo, you won!`   
-//   ~ if random string is `scissor` and user's choice is `paper` return `you loose! try again?`   
-
 let getComputerChoice = function() {
   let randomInt = Math.floor(Math.random() * 3);
 
