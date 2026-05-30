@@ -10,54 +10,106 @@ let getComputerChoice = function() {
   }
 };
 
-let getUserInput = function() {
-  let userChoice = prompt(`what's your choice?`, ``);
-  return userChoice
-};
-
 // initialize two variables for the purpose of keeping track of players score
 let humanScore = 0;
 let computerScore = 0;
 
-function playGame() {
-  function playRound(humanChoice, computerChoice) {
-    const normalizedHumanChoice = humanChoice.toLowerCase();
-    const varComputerChoice = computerChoice;
-    
-    if (normalizedHumanChoice === varComputerChoice) {
-      console.log(`Draw! let's play again.`);
-    } else if (normalizedHumanChoice === `rock` && varComputerChoice === `scissor`) {
-      ++humanScore;
-      console.log(`you won! rock beats scissor. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `rock` && varComputerChoice === `paper`) {
-      ++computerScore;
-      console.log(`you lose! paper beats rock. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `paper` && varComputerChoice === `rock`) {
-      ++humanScore;
-      console.log(`you won! paper beats rock. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `paper` && varComputerChoice === `scissor`) {
-      ++computerScore;
-      console.log(`you lose! scissor beats paper. you won ${humanScore}/5 rounds.`);
-    } else if (normalizedHumanChoice === `scissor` && varComputerChoice === `rock`) {
-      ++computerScore;
-      console.log(`you lose! rock beats scissor. you won ${humanScore}/5 rounds.`);
-    } else {
-      ++humanScore;
-      console.log(`you won! scissor beats paper. you won ${humanScore}/5 rounds.`);
-    }
-  }
+const user = document.querySelector(`#userChoice`);
+const btnRock = document.querySelector(`#btnRock`);
+const btnPaper = document.querySelector(`#btnPaper`);
+const btnScissor = document.querySelector(`#btnScissor`);
+const addDiv = document.createElement(`div`);
 
-  playRound(getUserInput(), getComputerChoice());
-  playRound(getUserInput(), getComputerChoice());
-  playRound(getUserInput(), getComputerChoice());
-  playRound(getUserInput(), getComputerChoice());
-  playRound(getUserInput(), getComputerChoice());
-  
-  if (humanScore > computerScore) {
-    console.log(`yup! FINAL SCORE ~ you won ${humanScore} out of 5 rounds.`);
+
+btnRock.addEventListener(`click`, () => {
+  let humanChoice = `rock`;
+  const computerChoice = getComputerChoice();
+  if (computerChoice === `rock`) {
+    addDiv.textContent = `it's a tie. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  } else if (computerChoice === `paper`) {
+    ++computerScore;
+    addDiv.textContent = `you loose, ${computerChoice} beats ${humanChoice}. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
   } else {
-    console.log(`better luck next time, FINAL SCORE ~ you won ${humanScore}/5 rounds.`);
-  }
-}
+    ++humanScore;
+    addDiv.textContent = `you won, ${humanChoice} beats ${computerChoice}. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  };
 
-playGame();
+  if (computerScore === 5 || humanScore === 5) {
+    if (computerScore === 5) {
+      alert(`computer won, play again?`)
+      addDiv.textContent = ``;
+      humanScore = 0;
+      computerScore = 0;
+    } else if (humanScore === 5) {
+      alert(`victory!! you won the game, wanna play again?`)
+      addDiv.textContent = ``;
+      humanScore = 0;
+      computerScore = 0;
+    };
+  };
+});
+
+btnPaper.addEventListener(`click`, () => {
+  let humanChoice = `paper`;
+  const computerChoice = getComputerChoice();
+  if (computerChoice === `rock`) {
+    ++humanScore
+    addDiv.textContent = `you won, ${humanChoice} beats ${computerChoice}. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  } else if (computerChoice === `paper`) {
+    addDiv.textContent = `it's a tie. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  } else {
+    ++computerScore;
+    addDiv.textContent = `you loose, ${computerChoice} beats ${humanChoice}. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  };  
+
+  if (computerScore === 5 || humanScore === 5) {
+    if (computerScore === 5) {
+      alert(`computer won, play again?`)
+      addDiv.textContent = ``;
+      humanScore = 0;
+      computerScore = 0;
+    } else if (humanScore === 5) {
+      alert(`victory!! you won the game, wanna play again?`)
+      addDiv.textContent = ``;
+      humanScore = 0;
+      computerScore = 0;
+    };
+  };
+});
+
+btnScissor.addEventListener(`click`, () => {
+  let humanChoice = `scissor`;
+  const computerChoice = getComputerChoice();
+  if (computerChoice === `rock`) {
+    ++computerScore
+    addDiv.textContent = `you loose, ${computerChoice} beats ${humanChoice}. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  } else if (computerChoice === `paper`) {
+    ++humanScore;
+    addDiv.textContent = `you won, ${humanChoice} beats ${computerChoice}. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  } else {
+    addDiv.textContent = `it's a tie. your score ${humanScore}, computer score ${computerScore}`;
+    user.appendChild(addDiv);
+  };  
+
+  if (computerScore === 5 || humanScore === 5) {
+    if (computerScore === 5) {
+      alert(`computer won, play again?`)
+      addDiv.textContent = ``;
+      humanScore = 0;
+      computerScore = 0;
+    } else if (humanScore === 5) {
+      alert(`victory!! you won the game, wanna play again?`)
+      addDiv.textContent = ``;
+      humanScore = 0;
+      computerScore = 0;
+    };
+  };
+});
